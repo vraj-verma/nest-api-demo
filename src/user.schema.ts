@@ -6,15 +6,18 @@ import { Document, SchemaType } from "mongoose";
 export type UserDocument = User & Document;
 @Schema()
 export class User {
-
     @Prop({ unique: true })
     email: string;
 
     @Prop({ required: true })
     name: string;
 
+    @Prop()
+    phone: string;
 }
 export const UserSchema = SchemaFactory.createForClass(User);
+
+
 
 
 
@@ -26,6 +29,6 @@ export class Admin {
     name: string;
 
     @Prop()
-    role:string;
+    role: string;
 }
 export const AdminSchema = SchemaFactory.createForClass(Admin)

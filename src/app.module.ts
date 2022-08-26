@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
+// import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { User, UserSchema, Admin, AdminSchema } from './user.schema'
+import { User, UserSchema, Admin, AdminSchema } from './user.schema';
 
 @Module({
   imports: [
@@ -12,7 +13,10 @@ import { User, UserSchema, Admin, AdminSchema } from './user.schema'
         { name: User.name, schema: UserSchema },
         { name: Admin.name, schema: AdminSchema },
       ]
-    )
+    ),
+    // ConfigModule.forRoot({
+    //   isGlobal: false
+    //  }),
   ],
   controllers: [AppController],
   providers: [AppService],

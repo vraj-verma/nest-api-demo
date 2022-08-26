@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { UserDocument, User, AdminDocument, Admin } from './user.schema'
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
+import { queryParam } from './model/query';
 
 @Injectable()
 export class AppService {
@@ -20,8 +21,8 @@ export class AppService {
   }
 
   // get user from DB
-  async getUser(): Promise<Array<User>> {
-    return this.userModel.find()
+  async getUser(data: queryParam): Promise<Array<User>> {
+    return this.userModel.find();
   }
 
   // get user by id from DB
@@ -42,19 +43,21 @@ export class AppService {
     return this.userModel.findByIdAndDelete(id);
   }
 
-
-
+  // Get user
+  async getByName(name:string):Promise<any>{
+    return this.userModel.find({name: name});
+  }
 
 
 
   // -----------
   // user array
-  userData: any[] = []
+  // userData: any[] = []
 
-  createUser(data: any): any {
-    this.userData.push({ id: data.id, name: data.name });
-    return this.userData
-  }
+  // createUser(data: any): any {
+  //   this.userData.push({ id: data.id, name: data.name });
+  //   return this.userData
+  // }
 
   // Get User
   // async getUser(): Promise<any[]> {
